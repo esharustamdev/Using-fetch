@@ -1,14 +1,20 @@
-import React from 'react'
-import { array } from './data/Product'
+import React, { useState } from 'react'
 
 const ProductList = () => {
+  const [Data, setData] = useState([])
+  const getData = () => {
+    fetch('http://fakestoreapi.com/products')
+      .then((x) => x.json())
+      .then((y) => setData(y))
+  }
+  getData()
   return (
     <>
       <div className='prodHead'>
         <h1>Products List</h1>
       </div>
       <div className='productCont'>
-        {array.map((x) => (
+        {Data.map((x) => (
           <>
             <div className='prodMain'>
               <div className='prodImg'>
